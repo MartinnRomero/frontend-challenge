@@ -30,6 +30,7 @@ export function CreateProductPage() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
@@ -69,6 +70,7 @@ export function CreateProductPage() {
     console.log(product);
 
     await post(product);
+    reset();
   };
 
   return (

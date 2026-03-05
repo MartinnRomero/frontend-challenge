@@ -28,6 +28,7 @@ export function CreateProductVariantPage() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<ProductVariantFormValues>({
     resolver: zodResolver(productVariantSchema),
@@ -53,6 +54,7 @@ export function CreateProductVariantPage() {
     };
 
     await post(payload);
+    reset();
   };
 
   return (
