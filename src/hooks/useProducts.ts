@@ -1,24 +1,6 @@
 // src/hooks/useProducts.ts
 import { useApi, usePost } from './useAPI';
-
-export interface Product {
-  categoryId: number;
-  title: string;
-  code: string;
-  variationType: string;
-  details: ProductDetails;
-  about: string[];
-  description: string;
-}
-
-export interface ProductDetails {
-  category: string;
-  capacity: number;
-  capacityUnit: 'GB' | 'TB';
-  capacityType: 'SSD' | 'HD';
-  brand: string;
-  series: string;
-}
+import type { Product } from '../types/product';
 
 export function useProduct(id: number) {
   return useApi<Product>(`product/${id}`);

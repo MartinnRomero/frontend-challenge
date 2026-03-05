@@ -1,13 +1,4 @@
-import type { Product } from '../../hooks/useProducts';
-
-export type CatalogProduct = Product & {
-  id: number;
-  image?: string;
-};
-
-type ProductCardProps = {
-  product: CatalogProduct;
-};
+import type { ProductCardProps } from '../../types/product';
 
 export function ProductCard({ product }: ProductCardProps) {
   return (

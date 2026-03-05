@@ -7,7 +7,7 @@ export interface ProductVariant {
   imageUrls: string[];
 }
 
-export function useCreateProductVariant(payload: ProductVariant) {
-  return usePost<void, ProductVariant>(`product/variation/create`, payload);
+export function useCreateProductVariant() {
+  return usePost<void, ProductVariant>(`product/variation/create`);
 }
 

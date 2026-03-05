@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCreateProduct, type Product } from '../../hooks/useProducts';
+import { useCreateProduct } from '../../hooks/useProducts';
+import type { Product } from '../../types/product';
 import './CreateProductPage.css';
 
 const productFormSchema = z.object({

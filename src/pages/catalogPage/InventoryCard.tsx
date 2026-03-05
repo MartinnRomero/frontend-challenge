@@ -1,4 +1,4 @@
-import type { Inventory } from '../../hooks/useInventory';
+import type { Inventory } from '../../types/inventory';
 
 type InventoryCardProps = {
   item: Inventory;

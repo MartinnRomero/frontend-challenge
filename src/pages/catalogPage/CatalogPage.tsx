@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import './CatalogPage.css';
 import { useProducts } from '../../hooks/useProducts';
-import { useInventory, type Inventory } from '../../hooks/useInventory';
+import { useInventory } from '../../hooks/useInventory';
 import { useCatalogEvents } from '../../hooks/useCatalogEvents';
-import { ProductCard, type CatalogProduct } from './ProductCard';
+import { ProductCard } from './ProductCard';
 import { InventoryCard } from './InventoryCard';
 
 const SKELETON_CARD_COUNT = 6;
@@ -30,14 +30,14 @@ function CatalogBody({
   view,
   loading,
   error,
-  products,
-  inventory,
+  productsResponse,
+  inventoryResponse,
 }: {
   view: 'products' | 'inventory';
   loading: boolean;
   error: string | null;
-  products: CatalogProduct[] | null;
-  inventory: Inventory[] | null;
+  productsResponse: any | null;
+  inventoryResponse: any | null;
 }) {
   if (loading) return <CatalogSkeleton />;
 
@@ -51,7 +51,7 @@ function CatalogBody({
   }
 
   if (view === 'products') {
-    const list = products?.data ?? [];
+    const list = productsResponse?.data ?? [];
     if (list.length === 0) {
       return (
         <div className="catalog-message catalog-message--empty">
@@ -59,12 +59,12 @@ function CatalogBody({
         </div>
       );
     }
-    return list.map((product) => (
+    return list.map((product: any) => (
       <ProductCard key={product.id} product={product} />
     ));
   }
 
-  const inventoryList = inventory?.data ?? [];
+  const inventoryList = inventoryResponse?.data ?? [];
   if (inventoryList.length === 0) {
     return (
       <div className="catalog-message catalog-message--empty">
@@ -73,7 +73,7 @@ function CatalogBody({
     );
   }
 
-  return inventoryList.map((item) => (
+  return inventoryList.map((item: any) => (
     <InventoryCard key={`${item.productVariationId}-${item.countryCode}`} item={item} />
   ));
 }
@@ -123,8 +123,8 @@ function CatalogPage() {
           view={view}
           loading={loading}
           error={error}
-          products={products.data as CatalogProduct[] | null}
-          inventory={inventory.data}
+          productsResponse={products.data}
+          inventoryResponse={inventory.data}
         />
       </div>
     </section>
